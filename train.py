@@ -108,7 +108,7 @@ def main():
     target_name = os.path.join("./logs", "{}.pth".format(name))
     print("will save to {}".format(target_name))
 
-    cudnn.benchmark = True
+    cudnn.benchmark = False
 
     train_loader = data.get_loader(train=True)
     val_loader = data.get_loader(val=True)
