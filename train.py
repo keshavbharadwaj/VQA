@@ -14,7 +14,7 @@ import data
 import model
 import utils.utils as utils
 
-
+torch.backends.cudnn.enabled = False
 with open("config.json", "r") as conf:
     config = json.loads(conf.read())
 
