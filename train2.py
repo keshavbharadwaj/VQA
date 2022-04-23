@@ -14,7 +14,6 @@ import data
 import model
 import utils.utils as utils
 
-torch.backends.cudnn.enabled = False
 with open("config.json", "r") as conf:
     config = json.loads(conf.read())
 
@@ -108,7 +107,7 @@ def main():
     target_name = os.path.join("./logs", "{}.pth".format(name))
     print("will save to {}".format(target_name))
 
-    cudnn.benchmark = False
+    cudnn.benchmark = True
 
     train_loader = data.get_loader(train=True)
     val_loader = data.get_loader(val=True)
