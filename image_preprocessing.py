@@ -8,7 +8,6 @@ from tqdm import tqdm
 import data
 import utils.utils as utils
 import json
-import resnet_master.resnet as caffe_resnet
 
 
 class Net(nn.Module):
