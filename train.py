@@ -52,14 +52,14 @@ def run(net, loader, optimizer, tracker, train=False, prefix="", epoch=0):
 
     log_softmax = nn.LogSoftmax().cuda()
     for v, q, a, idx, q_len in tq:
-        var_params = {
-            "volatile": not train,
-            "requires_grad": False,
-        }
-        v = Variable(v.cuda(non_blocking=False), **var_params)
-        q = Variable(q.cuda(non_blocking=False), **var_params)
-        a = Variable(a.cuda(non_blocking=False), **var_params)
-        q_len = Variable(q_len.cuda(non_blocking=False), **var_params)
+        # var_params = {
+        #     "volatile": not train,
+        #     "requires_grad": False,
+        # }
+        v = v.cuda()
+        q = q.cuda()
+        a = a.cuda()
+        q_len = q_len.cuda()
 
         out = net(v, q, q_len)
         nll = -log_softmax(out)
