@@ -55,12 +55,19 @@ def run(net, loader, optimizer, tracker, train=False, prefix="", epoch=0):
         #     "volatile": not train,
         #     "requires_grad": False,
         # }
+        print("this is v", v)
+        print("this is q", q)
+        print("this is a", a)
+        print("this is idx", idx)
+        print("this is q_len", q_len)
         v = v.cuda()
         q = q.cuda()
         a = a.cuda()
         q_len = q_len.cuda()
+        print("everything cuda")
 
         out = net(v, q, q_len)
+        print("got the output")
         nll = -log_softmax(out)
         loss = (nll * a / 10).sum(dim=1).mean()
         acc = utils.batch_accuracy(out.data, a.data).cpu()
