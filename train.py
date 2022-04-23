@@ -56,10 +56,10 @@ def run(net, loader, optimizer, tracker, train=False, prefix="", epoch=0):
             "volatile": not train,
             "requires_grad": False,
         }
-        v = Variable(v.cuda(non_blocking=True), **var_params)
-        q = Variable(q.cuda(non_blocking=True), **var_params)
-        a = Variable(a.cuda(non_blocking=True), **var_params)
-        q_len = Variable(q_len.cuda(non_blocking=True), **var_params)
+        v = Variable(v.cuda(non_blocking=False), **var_params)
+        q = Variable(q.cuda(non_blocking=False), **var_params)
+        a = Variable(a.cuda(non_blocking=False), **var_params)
+        q_len = Variable(q_len.cuda(non_blocking=False), **var_params)
 
         out = net(v, q, q_len)
         nll = -log_softmax(out)
